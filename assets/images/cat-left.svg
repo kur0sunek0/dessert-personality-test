@@ -1,0 +1,54 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32" width="256" height="256" shape-rendering="crispEdges">
+  <!-- 像素小猫A：白色长毛幼猫坐姿 + 粉色蝴蝶结 -->
+  <rect x="0" y="0" width="32" height="32" fill="transparent"/>
+  <!-- 尾巴（左侧蓬松） -->
+  <rect x="2" y="18" width="3" height="1" fill="#F0E8E0"/>
+  <rect x="1" y="19" width="3" height="2" fill="#F0E8E0"/>
+  <rect x="1" y="21" width="2" height="3" fill="#F0E8E0"/>
+  <rect x="2" y="24" width="2" height="1" fill="#E8DDD5"/>
+  <!-- 身体 -->
+  <rect x="10" y="18" width="12" height="9" fill="#F8F4F0"/>
+  <rect x="11" y="17" width="10" height="1" fill="#F8F4F0"/>
+  <!-- 身体阴影 -->
+  <rect x="10" y="24" width="12" height="3" fill="#F0E8E0"/>
+  <!-- 前爪 -->
+  <rect x="12" y="25" width="3" height="3" fill="#F8F4F0"/>
+  <rect x="17" y="25" width="3" height="3" fill="#F8F4F0"/>
+  <!-- 头部 -->
+  <rect x="9" y="8" width="14" height="10" fill="#FCFAF8"/>
+  <rect x="10" y="7" width="12" height="1" fill="#FCFAF8"/>
+  <rect x="11" y="6" width="10" height="1" fill="#FCFAF8"/>
+  <!-- 耳朵 -->
+  <rect x="9" y="3" width="4" height="4" fill="#FCFAF8"/>
+  <rect x="10" y="2" width="2" height="1" fill="#FCFAF8"/>
+  <rect x="19" y="3" width="4" height="4" fill="#FCFAF8"/>
+  <rect x="20" y="2" width="2" height="1" fill="#FCFAF8"/>
+  <!-- 耳朵内粉 -->
+  <rect x="10" y="4" width="2" height="2" fill="#F8D0D8"/>
+  <rect x="20" y="4" width="2" height="2" fill="#F8D0D8"/>
+  <!-- 眼睛（又圆又大） -->
+  <rect x="12" y="10" width="3" height="3" fill="#3A3030"/>
+  <rect x="17" y="10" width="3" height="3" fill="#3A3030"/>
+  <!-- 眼睛高光 -->
+  <rect x="13" y="10" width="1" height="1" fill="#FFFFFF"/>
+  <rect x="18" y="10" width="1" height="1" fill="#FFFFFF"/>
+  <!-- 小鼻子 -->
+  <rect x="15" y="14" width="2" height="1" fill="#F0B8C0"/>
+  <!-- 嘴 -->
+  <rect x="14" y="15" width="1" height="1" fill="#E8C8D0"/>
+  <rect x="17" y="15" width="1" height="1" fill="#E8C8D0"/>
+  <!-- 胡须 -->
+  <rect x="7" y="13" width="2" height="1" fill="#E8DDD5"/>
+  <rect x="7" y="14" width="2" height="1" fill="#E8DDD5"/>
+  <rect x="23" y="13" width="2" height="1" fill="#E8DDD5"/>
+  <rect x="23" y="14" width="2" height="1" fill="#E8DDD5"/>
+  <!-- 粉色蝴蝶结 -->
+  <rect x="13" y="3" width="6" height="3" fill="#F5B7C5"/>
+  <rect x="14" y="2" width="4" height="1" fill="#F5B7C5"/>
+  <rect x="15" y="1" width="2" height="1" fill="#E8A0B0"/>
+  <!-- 蝴蝶结中心 -->
+  <rect x="15" y="4" width="2" height="1" fill="#E8A0B0"/>
+  <!-- 腮红 -->
+  <rect x="10" y="12" width="2" height="1" fill="#FDDDE5"/>
+  <rect x="20" y="12" width="2" height="1" fill="#FDDDE5"/>
+</svg>

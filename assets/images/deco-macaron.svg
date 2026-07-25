@@ -1,0 +1,43 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 48 48" width="192" height="192" shape-rendering="crispEdges">
+  <!-- 草莓马卡龙 - 首页装饰右上 -->
+  <rect x="0" y="0" width="48" height="48" fill="transparent"/>
+  <!-- 底壳 -->
+  <rect x="10" y="30" width="28" height="8" fill="#F0B8C8"/>
+  <rect x="11" y="29" width="26" height="1" fill="#E8A8B8"/>
+  <rect x="12" y="28" width="24" height="1" fill="#E0A0B0"/>
+  <!-- 底壳裙边（马卡龙标志性褶皱） -->
+  <rect x="9" y="37" width="2" height="2" fill="#F0B8C8"/>
+  <rect x="13" y="37" width="3" height="1" fill="#F0B8C8"/>
+  <rect x="18" y="37" width="3" height="1" fill="#F0B8C8"/>
+  <rect x="23" y="37" width="3" height="1" fill="#F0B8C8"/>
+  <rect x="28" y="37" width="3" height="1" fill="#F0B8C8"/>
+  <rect x="33" y="37" width="3" height="1" fill="#F0B8C8"/>
+  <rect x="38" y="37" width="2" height="2" fill="#F0B8C8"/>
+  <!-- 夹心 -->
+  <rect x="13" y="25" width="22" height="3" fill="#FFF5F0"/>
+  <rect x="14" y="24" width="20" height="1" fill="#FFF5F0"/>
+  <!-- 夹心草莓酱 -->
+  <rect x="18" y="26" width="12" height="2" fill="#F0A0A8"/>
+  <!-- 顶壳 -->
+  <rect x="12" y="16" width="24" height="8" fill="#F5C8D5"/>
+  <rect x="11" y="17" width="2" height="6" fill="#F0BCC8"/>
+  <rect x="35" y="17" width="2" height="6" fill="#F0BCC8"/>
+  <rect x="12" y="15" width="24" height="1" fill="#F0BCC8"/>
+  <rect x="13" y="14" width="22" height="1" fill="#EDB4C0"/>
+  <!-- 顶壳高光（马卡龙光滑质感） -->
+  <rect x="15" y="16" width="10" height="2" fill="#FDDDE5"/>
+  <rect x="16" y="18" width="6" height="2" fill="#FDDDE5"/>
+  <!-- 顶部装饰：粉色淋面 -->
+  <rect x="20" y="11" width="8" height="3" fill="#F0A0B8"/>
+  <rect x="21" y="10" width="6" height="1" fill="#E898B0"/>
+  <rect x="22" y="9" width="4" height="1" fill="#E898B0"/>
+  <!-- 小草莓片 -->
+  <rect x="21" y="7" width="6" height="4" fill="#E07072"/>
+  <rect x="22" y="6" width="4" height="1" fill="#D06062"/>
+  <!-- 叶子 -->
+  <rect x="22" y="6" width="1" height="1" fill="#7AB888"/>
+  <rect x="25" y="6" width="1" height="1" fill="#7AB888"/>
+  <!-- 散落糖粒 -->
+  <rect x="7" y="22" width="2" height="2" fill="#FFE8A0"/>
+  <rect x="39" y="28" width="2" height="2" fill="#D0A0C8"/>
+</svg>

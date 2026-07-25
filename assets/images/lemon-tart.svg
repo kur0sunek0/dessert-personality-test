@@ -1,0 +1,57 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" width="256" height="256" shape-rendering="crispEdges">
+  <!-- 柠檬挞 64x64 细致版 -->
+  <rect x="0" y="0" width="64" height="64" fill="transparent"/>
+  <!-- 小盘子（浅薄荷绿） -->
+  <rect x="12" y="48" width="40" height="3" fill="#C8E0D0"/>
+  <rect x="14" y="47" width="36" height="1" fill="#B8D0C0"/>
+  <!-- 挞皮主体 -->
+  <rect x="14" y="28" width="36" height="19" fill="#D4B896"/>
+  <rect x="15" y="27" width="34" height="1" fill="#C8A880"/>
+  <!-- 挞皮内壁 -->
+  <rect x="16" y="28" width="32" height="1" fill="#C8A880"/>
+  <!-- 挞皮花边（顶部波纹） -->
+  <rect x="13" y="28" width="1" height="3" fill="#D4B896"/>
+  <rect x="50" y="28" width="1" height="3" fill="#D4B896"/>
+  <rect x="14" y="26" width="3" height="1" fill="#D4B896"/>
+  <rect x="19" y="26" width="3" height="1" fill="#D4B896"/>
+  <rect x="24" y="26" width="3" height="1" fill="#D4B896"/>
+  <rect x="29" y="26" width="3" height="1" fill="#D4B896"/>
+  <rect x="34" y="26" width="3" height="1" fill="#D4B896"/>
+  <rect x="39" y="26" width="3" height="1" fill="#D4B896"/>
+  <rect x="44" y="26" width="3" height="1" fill="#D4B896"/>
+  <rect x="49" y="26" width="3" height="1" fill="#D4B896"/>
+  <!-- 挞皮底部纹理 -->
+  <rect x="15" y="40" width="34" height="1" fill="#C8A880"/>
+  <rect x="15" y="44" width="34" height="1" fill="#C8A880"/>
+  <rect x="16" y="36" width="32" height="1" fill="#D0B088"/>
+  <!-- 柠檬酱馅料 -->
+  <rect x="16" y="20" width="32" height="7" fill="#F0D878"/>
+  <rect x="17" y="19" width="30" height="1" fill="#E8D068"/>
+  <rect x="18" y="18" width="28" height="1" fill="#E8D068"/>
+  <!-- 柠檬酱表面高光 -->
+  <rect x="20" y="20" width="14" height="1" fill="#F8E898"/>
+  <rect x="22" y="19" width="8" height="1" fill="#F8E898"/>
+  <rect x="19" y="21" width="6" height="1" fill="#F8E898"/>
+  <!-- 柠檬酱暗面 -->
+  <rect x="17" y="25" width="30" height="1" fill="#E0C860"/>
+  <!-- 顶部柠檬片 -->
+  <rect x="22" y="10" width="10" height="8" fill="#F0D878"/>
+  <rect x="23" y="9" width="8" height="1" fill="#E8D068"/>
+  <!-- 柠檬皮（白色层） -->
+  <rect x="22" y="10" width="1" height="8" fill="#FFF8E0"/>
+  <rect x="31" y="10" width="1" height="8" fill="#FFF8E0"/>
+  <rect x="23" y="17" width="8" height="1" fill="#FFF8E0"/>
+  <rect x="23" y="10" width="8" height="1" fill="#FFF8E0"/>
+  <!-- 柠檬果肉纹理 -->
+  <rect x="25" y="13" width="1" height="2" fill="#E8D068"/>
+  <rect x="28" y="13" width="1" height="2" fill="#E8D068"/>
+  <rect x="26" y="15" width="4" height="1" fill="#E8D068"/>
+  <!-- 薄荷叶 -->
+  <rect x="36" y="10" width="6" height="4" fill="#7AB888"/>
+  <rect x="37" y="9" width="4" height="1" fill="#6AAA78"/>
+  <rect x="38" y="8" width="2" height="1" fill="#5A9868"/>
+  <!-- 柠檬皮屑 -->
+  <rect x="30" y="21" width="2" height="1" fill="#F0D878"/>
+  <rect x="44" y="22" width="2" height="1" fill="#F0D878"/>
+  <rect x="34" y="23" width="1" height="1" fill="#F0D878"/>
+</svg>

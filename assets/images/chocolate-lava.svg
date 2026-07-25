@@ -1,0 +1,47 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" width="256" height="256" shape-rendering="crispEdges">
+  <!-- 巧克力熔岩蛋糕 64x64 细致版 -->
+  <rect x="0" y="0" width="64" height="64" fill="transparent"/>
+  <!-- 盘子 -->
+  <rect x="10" y="50" width="44" height="3" fill="#F5E1E1"/>
+  <rect x="12" y="49" width="40" height="1" fill="#E8D5D0"/>
+  <!-- 烤盅 -->
+  <rect x="14" y="34" width="36" height="15" fill="#F5EDE8"/>
+  <rect x="15" y="33" width="34" height="1" fill="#EDE0D8"/>
+  <rect x="14" y="35" width="1" height="13" fill="#EDE0D8"/>
+  <rect x="49" y="35" width="1" height="13" fill="#EDE0D8"/>
+  <!-- 蛋糕体（深色巧克力） -->
+  <rect x="16" y="24" width="32" height="9" fill="#5A2E2E"/>
+  <rect x="15" y="23" width="34" height="1" fill="#4A2020"/>
+  <rect x="15" y="22" width="34" height="1" fill="#402018"/>
+  <!-- 蛋糕高光 -->
+  <rect x="17" y="25" width="6" height="2" fill="#6B3E3E"/>
+  <!-- 蛋糕纹理 -->
+  <rect x="18" y="28" width="28" height="1" fill="#4A2020"/>
+  <rect x="17" y="31" width="30" height="1" fill="#4A2020"/>
+  <!-- 熔岩流心（顶部涌出） -->
+  <rect x="20" y="18" width="24" height="4" fill="#B85028"/>
+  <rect x="21" y="17" width="22" height="1" fill="#C05830"/>
+  <rect x="22" y="16" width="20" height="1" fill="#C86038"/>
+  <rect x="23" y="15" width="18" height="1" fill="#D06840"/>
+  <rect x="24" y="14" width="16" height="1" fill="#D87048"/>
+  <!-- 熔岩流心高光 -->
+  <rect x="26" y="16" width="6" height="1" fill="#E08058"/>
+  <rect x="28" y="15" width="4" height="1" fill="#E08058"/>
+  <!-- 熔岩侧面流淌 -->
+  <rect x="16" y="23" width="3" height="5" fill="#B85028"/>
+  <rect x="45" y="23" width="3" height="3" fill="#B85028"/>
+  <rect x="17" y="19" width="2" height="4" fill="#C05830"/>
+  <rect x="46" y="20" width="2" height="3" fill="#C05830"/>
+  <!-- 可可粉散落 -->
+  <rect x="19" y="14" width="2" height="1" fill="#3A1818"/>
+  <rect x="30" y="13" width="2" height="1" fill="#3A1818"/>
+  <rect x="40" y="16" width="2" height="1" fill="#3A1818"/>
+  <rect x="25" y="12" width="1" height="2" fill="#3A1818"/>
+  <rect x="36" y="15" width="1" height="1" fill="#3A1818"/>
+  <!-- 薄荷叶 -->
+  <rect x="44" y="8" width="6" height="4" fill="#6AAA78"/>
+  <rect x="45" y="7" width="4" height="1" fill="#5A9868"/>
+  <rect x="46" y="6" width="2" height="1" fill="#4A8858"/>
+  <!-- 薄荷叶脉 -->
+  <rect x="47" y="9" width="1" height="2" fill="#5A9868"/>
+</svg>

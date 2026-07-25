@@ -1,0 +1,275 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="default">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+
+  <!-- SEO -->
+  <title>测测你的本命甜点塑 🍰</title>
+  <meta name="description" content="10道生活化选择题，找到属于你的本命甜点人格！可爱治愈的甜点设定，带来松弛好心情。">
+
+  <!-- Open Graph (社交分享预览) -->
+  <meta property="og:title" content="测测你的本命甜点塑">
+  <meta property="og:description" content="10道小题，找到属于你的甜点人格。">
+  <meta property="og:type" content="website">
+  <meta property="og:image" content="assets/images/og-image.png">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+
+  <!-- 微信分享 -->
+  <meta itemprop="name" content="测测你的本命甜点塑">
+  <meta itemprop="description" content="10道小题，找到属于你的甜点人格。">
+  <meta itemprop="image" content="assets/images/og-image.png">
+
+  <!-- Favicon -->
+  <link rel="icon" type="image/png" href="assets/images/favicon.png">
+
+  <!-- PWA Manifest -->
+  <link rel="manifest" href="manifest.json">
+  <meta name="theme-color" content="#FFF0F3">
+
+  <!-- Google Fonts: 花体英文 -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet">
+
+  <!-- 样式 -->
+  <link rel="stylesheet" href="css/style.css">
+
+  <!-- html2canvas (rc4 — iOS微信兼容) -->
+  <script defer src="https://cdn.jsdelivr.net/npm/html2canvas@1.0.0-rc4/dist/html2canvas.min.js"></script>
+
+  <!-- 应用脚本（按依赖顺序加载） -->
+  <script defer src="js/data.js"></script>
+  <script defer src="js/scoring.js"></script>
+  <script defer src="js/wechat.js"></script>
+  <script defer src="js/sparkle.js"></script>
+  <script defer src="js/poster.js"></script>
+  <script defer src="js/app.js"></script>
+</head>
+<body>
+
+  <!-- ========== 动态蝴蝶结链条边框 ========== -->
+  <div class="ribbon-border" aria-hidden="true">
+    <div class="ribbon-border__edge ribbon-border__edge--top">
+      <span class="ribbon-border__bow">🎀</span><span class="ribbon-border__bow">🎀</span><span class="ribbon-border__bow">🎀</span><span class="ribbon-border__bow">🎀</span><span class="ribbon-border__bow">🎀</span><span class="ribbon-border__bow">🎀</span><span class="ribbon-border__bow">🎀</span><span class="ribbon-border__bow">🎀</span>
+    </div>
+    <div class="ribbon-border__edge ribbon-border__edge--right">
+      <span class="ribbon-border__bow">🎀</span><span class="ribbon-border__bow">🎀</span><span class="ribbon-border__bow">🎀</span><span class="ribbon-border__bow">🎀</span><span class="ribbon-border__bow">🎀</span><span class="ribbon-border__bow">🎀</span><span class="ribbon-border__bow">🎀</span><span class="ribbon-border__bow">🎀</span>
+    </div>
+    <div class="ribbon-border__edge ribbon-border__edge--bottom">
+      <span class="ribbon-border__bow">🎀</span><span class="ribbon-border__bow">🎀</span><span class="ribbon-border__bow">🎀</span><span class="ribbon-border__bow">🎀</span><span class="ribbon-border__bow">🎀</span><span class="ribbon-border__bow">🎀</span><span class="ribbon-border__bow">🎀</span><span class="ribbon-border__bow">🎀</span>
+    </div>
+    <div class="ribbon-border__edge ribbon-border__edge--left">
+      <span class="ribbon-border__bow">🎀</span><span class="ribbon-border__bow">🎀</span><span class="ribbon-border__bow">🎀</span><span class="ribbon-border__bow">🎀</span><span class="ribbon-border__bow">🎀</span><span class="ribbon-border__bow">🎀</span><span class="ribbon-border__bow">🎀</span><span class="ribbon-border__bow">🎀</span>
+    </div>
+  </div>
+
+  <!-- ========== 应用容器 ========== -->
+  <div id="app" class="app-container">
+
+    <!-- ===== 页面1：首页欢迎页 ===== -->
+    <section id="page-home" class="page page--active">
+
+      <!-- 复古社交菜单栏（纯装饰） -->
+      <div class="retro-menubar" aria-hidden="true">
+        <span class="retro-menubar__item">♪ Send Message</span>
+        <span class="retro-menubar__item">♡ Add to Favorites</span>
+        <span class="retro-menubar__item">★ Comment</span>
+        <span class="retro-menubar__item">↗ Share</span>
+      </div>
+
+      <!-- 黑色波点蕾丝花边 -->
+      <div class="lace-dots" aria-hidden="true"></div>
+
+      <div class="home-content">
+        <!-- 像素甜品装饰区域 -->
+        <div class="doll-corner doll-corner--left" aria-hidden="true">
+          <img src="assets/images/deco-cupcake.svg" alt="纸杯蛋糕" width="96" height="96" class="cat-decor">
+        </div>
+        <div class="doll-corner doll-corner--right" aria-hidden="true">
+          <img src="assets/images/deco-macaron.svg" alt="马卡龙" width="96" height="96" class="cat-decor">
+        </div>
+
+        <!-- 甜点插画区域 -->
+        <div class="home-hero">
+          <div class="hero-frame">
+            <div class="hero-frame__ribbon" aria-hidden="true">🎀</div>
+            <div class="hero-frame__inner">
+              <img src="assets/images/hero-cake.svg" alt="精致草莓蛋糕" width="140" height="140" class="hero-cake-img">
+            </div>
+          </div>
+          <p class="hero-caption">૮₍ ˶•⤙•˶ ₎ა</p>
+        </div>
+
+        <!-- Slogan（复古弹窗卡片） -->
+        <div class="window-panel window-panel--slogan">
+          <div class="window-panel__titlebar">
+            <span class="window-panel__title">★ 你的本命甜点 ★</span>
+            <span class="window-panel__btn">×</span>
+          </div>
+          <div class="window-panel__body">
+            <h1 class="home-title">
+              <span class="home-title__main">测测你的</span>
+              <span class="home-title__highlight">本命甜点塑</span>
+            </h1>
+            <p class="home-desc">10道小题，找到属于你的甜点人格</p>
+            <p class="home-sub">♡ 治愈 · 松弛 · 可爱 · Y2K ♡</p>
+          </div>
+        </div>
+
+        <!-- 开始按钮 -->
+        <button id="btn-start" class="btn btn--primary btn--lg" type="button">
+          ♡ 开始测试 ♡
+        </button>
+
+        <!-- 底部装饰 -->
+        <div class="home-footer-decor" aria-hidden="true">
+          ♪  ──  ♡  ──  ★  ──  ♪
+        </div>
+      </div>
+
+    </section>
+
+    <!-- ===== 页面2：答题页 ===== -->
+    <section id="page-quiz" class="page">
+
+      <!-- 黑色波点蕾丝花边 -->
+      <div class="lace-dots" aria-hidden="true"></div>
+
+      <div class="quiz-content">
+        <!-- 顶部：进度条 -->
+        <div class="quiz-header">
+          <button id="btn-back-home" class="btn btn--text" type="button">
+            ← 返回
+          </button>
+          <div class="progress-bar">
+            <div class="progress-bar__fill" style="width: 0%;"></div>
+          </div>
+          <span class="progress-text" id="progress-text">1/10</span>
+        </div>
+
+        <!-- 题目区域 -->
+        <div class="window-panel window-panel--quiz">
+          <div class="window-panel__titlebar">
+            <span class="window-panel__title">♪ Question</span>
+            <span class="window-panel__btn">×</span>
+          </div>
+          <div class="window-panel__body">
+            <h2 class="quiz-question" id="quiz-question">题目加载中...</h2>
+            <div class="quiz-options" id="quiz-options">
+              <!-- JS动态渲染选项卡片 -->
+            </div>
+          </div>
+        </div>
+
+        <!-- 底部：导航按钮 -->
+        <div class="quiz-footer">
+          <button id="btn-prev" class="btn btn--outline" type="button" disabled>
+            ← 上一题
+          </button>
+          <button id="btn-next" class="btn btn--primary" type="button" disabled>
+            下一题 →
+          </button>
+        </div>
+      </div>
+
+    </section>
+
+    <!-- ===== 页面3：结果页 ===== -->
+    <section id="page-result" class="page">
+
+      <!-- 黑色波点蕾丝花边 -->
+      <div class="lace-dots" aria-hidden="true"></div>
+
+      <div class="result-content">
+        <!-- 甜点图片展示（复古弹窗） -->
+        <div class="window-panel window-panel--result-hero">
+          <div class="window-panel__titlebar">
+            <span class="window-panel__title">♡ Your Dessert Soul</span>
+            <span class="window-panel__btn">×</span>
+          </div>
+          <div class="window-panel__body">
+            <div class="result-hero">
+              <div class="result-frame">
+                <div class="result-frame__ribbon" aria-hidden="true">🎀</div>
+                <img id="result-image" class="result-image"
+                     src="" alt="甜点形象"
+                     width="200" height="200">
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- 人格信息 -->
+        <div class="window-panel window-panel--result-info">
+          <div class="window-panel__titlebar">
+            <span class="window-panel__title">★ Personality</span>
+            <span class="window-panel__btn">×</span>
+          </div>
+          <div class="window-panel__body">
+            <div class="result-info">
+              <h2 class="result-name" id="result-name"></h2>
+              <div class="result-tags" id="result-tags">
+                <!-- JS动态渲染标签 -->
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- 性格解读卡片 -->
+        <div class="result-card">
+          <div class="result-card__lace-dots" aria-hidden="true"></div>
+          <div class="result-card__decor" aria-hidden="true">
+            ♡  ·  ★  ·  ♡  ·  ★  ·  ♡
+          </div>
+          <p class="result-description" id="result-description"></p>
+        </div>
+
+        <!-- 操作按钮 -->
+        <div class="result-actions">
+          <button id="btn-poster" class="btn btn--primary btn--lg" type="button">
+            ♡ 保存结果海报
+          </button>
+          <button id="btn-retry" class="btn btn--outline" type="button">
+            ↻ 重新测试
+          </button>
+        </div>
+
+        <!-- 底部装饰 -->
+        <div class="result-footer-decor" aria-hidden="true">
+          ♡ 分享给你的朋友一起测吧 ♡
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+
+  <!-- ========== 海报弹窗 ========== -->
+  <div id="poster-modal" class="poster-modal" style="display: none;">
+    <div class="poster-modal__overlay"></div>
+    <div class="poster-modal__content">
+      <div class="poster-modal__close" id="btn-close-modal" role="button" aria-label="关闭">×</div>
+      <div id="poster-image-container" class="poster-modal__image">
+        <!-- html2canvas 生成的海报图片展示在这里 -->
+      </div>
+      <p class="poster-modal__hint" id="poster-hint">
+        长按图片保存到相册
+      </p>
+      <button class="btn btn--outline btn--sm" id="btn-download-poster" type="button">
+        ↓ 下载图片
+      </button>
+    </div>
+  </div>
+
+  <!-- ========== 隐藏海报画布（供 html2canvas 渲染） ========== -->
+  <div id="poster-canvas" class="poster-canvas" style="position: absolute; left: -9999px; top: 0; width: 370px;">
+    <!-- JS动态构建海报内容 -->
+  </div>
+
+</body>
+</html>
