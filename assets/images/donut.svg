@@ -1,52 +1,66 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" width="256" height="256" shape-rendering="crispEdges">
-  <!-- 甜甜圈 64x64 细致版 -->
+  <!-- 甜甜圈 俯视图 64x64 — 环形+圆洞+糖霜+彩糖粒 -->
   <rect x="0" y="0" width="64" height="64" fill="transparent"/>
-  <!-- 垫纸 -->
-  <rect x="12" y="50" width="40" height="3" fill="#F5E1E1"/>
-  <rect x="14" y="49" width="36" height="1" fill="#E8D5D0"/>
-  <!-- 甜甜圈底影 -->
-  <rect x="14" y="46" width="36" height="3" fill="#E0C8A0"/>
-  <!-- 面团主体（环形） -->
-  <rect x="10" y="20" width="44" height="26" fill="#E8C8A0"/>
-  <rect x="11" y="19" width="42" height="1" fill="#E4C498"/>
-  <rect x="12" y="18" width="40" height="1" fill="#E0BC90"/>
-  <rect x="9" y="21" width="1" height="24" fill="#E0BC90"/>
-  <rect x="54" y="21" width="1" height="24" fill="#E0BC90"/>
-  <!-- 中间洞 -->
-  <rect x="22" y="30" width="20" height="6" fill="transparent"/>
-  <rect x="23" y="29" width="18" height="1" fill="transparent"/>
-  <!-- 洞周阴影 -->
-  <rect x="21" y="30" width="1" height="6" fill="#D8B888"/>
-  <rect x="42" y="30" width="1" height="6" fill="#D8B888"/>
-  <rect x="22" y="36" width="20" height="1" fill="#D8B888"/>
-  <!-- 粉色糖霜 -->
-  <rect x="11" y="17" width="42" height="5" fill="#F0B8C8"/>
-  <rect x="10" y="18" width="1" height="4" fill="#E8A8B8"/>
-  <rect x="53" y="18" width="1" height="4" fill="#E8A8B8"/>
-  <rect x="12" y="16" width="40" height="1" fill="#E8A8B8"/>
+  <!-- 底影 -->
+  <rect x="8" y="48" width="48" height="3" fill="#F5E1E1"/>
+  <rect x="10" y="47" width="44" height="1" fill="#E8D5D0"/>
+  <!-- 面团外圈（俯视环形） -->
+  <rect x="7" y="12" width="50" height="36" fill="#E8C090"/>
+  <rect x="8" y="11" width="48" height="1" fill="#E0B888"/>
+  <rect x="9" y="10" width="46" height="1" fill="#D8B080"/>
+  <rect x="7" y="13" width="1" height="34" fill="#E0B888"/>
+  <rect x="56" y="13" width="1" height="34" fill="#E0B888"/>
+  <rect x="8" y="47" width="48" height="1" fill="#E0B888"/>
+  <!-- 中间圆洞 -->
+  <rect x="22" y="22" width="20" height="16" fill="transparent"/>
+  <rect x="23" y="21" width="18" height="1" fill="transparent"/>
+  <rect x="24" y="20" width="16" height="1" fill="transparent"/>
+  <rect x="25" y="19" width="14" height="1" fill="transparent"/>
+  <rect x="21" y="23" width="1" height="14" fill="transparent"/>
+  <rect x="42" y="23" width="1" height="14" fill="transparent"/>
+  <rect x="23" y="37" width="18" height="1" fill="transparent"/>
+  <rect x="24" y="38" width="16" height="1" fill="transparent"/>
+  <!-- 洞周面团阴影 -->
+  <rect x="21" y="22" width="1" height="16" fill="#D8B080"/>
+  <rect x="42" y="22" width="1" height="16" fill="#D8B080"/>
+  <rect x="22" y="21" width="20" height="1" fill="#D8B080"/>
+  <rect x="22" y="37" width="20" height="1" fill="#D0A870"/>
+  <!-- 粉色糖霜（覆盖上半部分面团） -->
+  <rect x="8" y="10" width="48" height="14" fill="#F0B8C8"/>
+  <rect x="7" y="11" width="1" height="12" fill="#E8A8B8"/>
+  <rect x="55" y="11" width="1" height="12" fill="#E8A8B8"/>
+  <rect x="9" y="9" width="46" height="1" fill="#E8A0B0"/>
+  <!-- 糖霜内侧弧（洞边） -->
+  <rect x="22" y="14" width="5" height="4" fill="#F0B8C8"/>
+  <rect x="37" y="14" width="5" height="4" fill="#F0B8C8"/>
+  <rect x="27" y="10" width="10" height="3" fill="#F0B8C8"/>
   <!-- 糖霜滴落 -->
-  <rect x="15" y="22" width="4" height="3" fill="#F0B8C8"/>
-  <rect x="25" y="22" width="3" height="2" fill="#F0B8C8"/>
-  <rect x="40" y="22" width="5" height="3" fill="#F0B8C8"/>
-  <rect x="50" y="22" width="3" height="2" fill="#F0B8C8"/>
+  <rect x="14" y="23" width="5" height="4" fill="#F0B8C8"/>
+  <rect x="28" y="24" width="4" height="3" fill="#F0B8C8"/>
+  <rect x="44" y="23" width="6" height="4" fill="#F0B8C8"/>
+  <rect x="36" y="25" width="3" height="2" fill="#F0B8C8"/>
   <!-- 糖霜高光 -->
-  <rect x="14" y="17" width="8" height="1" fill="#FCC8D8"/>
-  <rect x="30" y="17" width="6" height="1" fill="#FCC8D8"/>
-  <rect x="42" y="17" width="6" height="1" fill="#FCC8D8"/>
-  <!-- 彩糖粒（更多更丰富） -->
-  <rect x="16" y="18" width="2" height="2" fill="#FFE8A0"/>
-  <rect x="22" y="18" width="2" height="2" fill="#A0D8D0"/>
-  <rect x="28" y="17" width="2" height="2" fill="#FFE8A0"/>
-  <rect x="34" y="18" width="1" height="1" fill="#D0A0C8"/>
-  <rect x="38" y="17" width="2" height="2" fill="#A0D8D0"/>
-  <rect x="44" y="18" width="2" height="2" fill="#D0A0C8"/>
-  <rect x="20" y="17" width="1" height="1" fill="#D0A0C8"/>
-  <rect x="32" y="19" width="2" height="1" fill="#FFE8A0"/>
-  <rect x="48" y="18" width="1" height="1" fill="#A0D8D0"/>
-  <rect x="14" y="19" width="1" height="1" fill="#FFE8A0"/>
-  <rect x="41" y="18" width="1" height="1" fill="#FFE8A0"/>
-  <rect x="26" y="19" width="2" height="1" fill="#D0A0C8"/>
+  <rect x="11" y="10" width="14" height="1" fill="#FCC8D8"/>
+  <rect x="30" y="10" width="10" height="1" fill="#FCC8D8"/>
+  <rect x="44" y="10" width="8" height="1" fill="#FCC8D8"/>
+  <!-- 彩糖粒（丰富散布） -->
+  <rect x="13" y="11" width="3" height="3" fill="#FFE8A0"/>
+  <rect x="20" y="12" width="2" height="2" fill="#A0D8D0"/>
+  <rect x="26" y="11" width="2" height="2" fill="#D0A0C8"/>
+  <rect x="33" y="12" width="3" height="3" fill="#FFE8A0"/>
+  <rect x="40" y="11" width="2" height="2" fill="#A0D8D0"/>
+  <rect x="48" y="12" width="2" height="2" fill="#D0A0C8"/>
+  <rect x="16" y="13" width="2" height="2" fill="#D0A0C8"/>
+  <rect x="30" y="13" width="2" height="1" fill="#FFE8A0"/>
+  <rect x="36" y="13" width="2" height="2" fill="#A0D8D0"/>
+  <rect x="43" y="13" width="2" height="1" fill="#FFE8A0"/>
+  <rect x="10" y="12" width="1" height="2" fill="#A0D8D0"/>
+  <rect x="53" y="11" width="1" height="2" fill="#D0A0C8"/>
+  <rect x="22" y="10" width="2" height="1" fill="#FFE8A0"/>
+  <!-- 面团可见部分（无糖霜覆盖的下半部） -->
+  <rect x="10" y="27" width="44" height="20" fill="#E8C8A0"/>
+  <rect x="11" y="28" width="42" height="1" fill="#F0D8B8"/>
   <!-- 面团高光 -->
-  <rect x="14" y="23" width="4" height="2" fill="#F0D8B8"/>
-  <rect x="46" y="28" width="4" height="2" fill="#F0D8B8"/>
+  <rect x="16" y="32" width="12" height="2" fill="#F0D8B8"/>
+  <rect x="38" y="35" width="10" height="2" fill="#F0D8B8"/>
 </svg>
