@@ -262,21 +262,14 @@ function showResultEmojiFallback(emoji) {
 }
 
 // 保存海报
-DOM.btnPoster.addEventListener('click', async function () {
+DOM.btnPoster.addEventListener('click', function () {
   if (!AppState.resultId) return;
 
-  // 显示加载状态
-  DOM.btnPoster.textContent = '⏳ 生成海报中...';
-  DOM.btnPoster.disabled = true;
+  // 生成海报卡片（HTML + Canvas下载图）
+  var posterData = generatePoster(AppState.resultId);
 
-  var dataUrl = await generatePoster(AppState.resultId);
-
-  // 恢复按钮
-  DOM.btnPoster.textContent = '📸 保存结果海报';
-  DOM.btnPoster.disabled = false;
-
-  // 展示/保存海报
-  saveOrSharePoster(dataUrl);
+  // 展示海报弹窗
+  saveOrSharePoster(posterData);
 });
 
 // 重新测试
