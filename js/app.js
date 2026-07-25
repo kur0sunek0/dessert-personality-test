@@ -299,6 +299,73 @@ DOM.btnDownloadPoster.addEventListener('click', function () {
   alert('请长按海报图片保存到相册~');
 });
 
+// ---------- 分享按钮（菜单栏） ----------
+var btnShareMenu = document.getElementById('btn-share-menu');
+if (btnShareMenu) {
+  btnShareMenu.addEventListener('click', function () {
+    var shareUrl = window.location.href;
+    var shareTitle = '测测你的本命甜点塑 🍰';
+    var shareText = '10道小题，找到属于你的甜点人格！快来测测~';
+
+    // 优先使用 Web Share API（手机原生分享）
+    if (navigator.share) {
+      navigator.share({
+        title: shareTitle,
+        text: shareText,
+        url: shareUrl,
+      }).catch(function () {});
+    } else {
+      // 桌面端/微信：复制链接
+      copyToClipboard(shareUrl);
+    }
+  });
+}
+
+/**
+ * 复制文字到剪贴板 + 短暂反馈
+ */
+function copyToClipboard(text) {
+  if (navigator.clipboard && navigator.clipboard.writeText) {
+    navigator.clipboard.writeText(text).then(function () {
+      showCopyToast('链接已复制！去粘贴分享吧 ♡');
+    }).catch(function () {
+      fallbackCopy(text);
+    });
+  } else {
+    fallbackCopy(text);
+  }
+}
+
+function fallbackCopy(text) {
+  var textarea = document.createElement('textarea');
+  textarea.value = text;
+  textarea.style.position = 'fixed';
+  textarea.style.left = '-9999px';
+  document.body.appendChild(textarea);
+  textarea.select();
+  try {
+    document.execCommand('copy');
+    showCopyToast('链接已复制！去粘贴分享吧 ♡');
+  } catch (e) {
+    alert('链接：' + text);
+  }
+  document.body.removeChild(textarea);
+}
+
+function showCopyToast(msg) {
+  var toast = document.createElement('div');
+  toast.textContent = msg;
+  toast.style.cssText =
+    'position:fixed;bottom:80px;left:50%;transform:translateX(-50%);' +
+    'background:#1A1A1A;color:#FFF;padding:12px 24px;border-radius:20px;' +
+    'font-size:14px;z-index:99999;white-space:nowrap;' +
+    'animation:toastIn 0.3s ease,toastOut 0.3s ease 1.8s forwards;';
+  document.body.appendChild(toast);
+  setTimeout(function () {
+    if (toast.parentNode) toast.parentNode.removeChild(toast);
+  }, 2200);
+}
+
 // ---------- 初始化：确保首页可见 ----------
 navigateTo('home');
 
