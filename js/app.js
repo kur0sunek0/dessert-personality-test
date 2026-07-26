@@ -197,7 +197,7 @@ DOM.btnNext.addEventListener('click', function () {
   var isLast = AppState.currentQuestion === QUESTIONS.length - 1;
   if (isLast) {
     AppState.resultId = calculateResult(AppState.answers);
-    navigateTo('paywall');  // 先看广告
+    navigateTo('result');  // 直接看结果
   } else {
     AppState.currentQuestion++; renderQuestion(); updateProgress(); updateNavButtons();
   }
