@@ -190,80 +190,51 @@
 
     </section>
 
-    <!-- ===== 页面3：付费页 ===== -->
+    <!-- ===== 页面3：广告页 ===== -->
     <section id="page-paywall" class="page">
 
       <!-- 黑色波点蕾丝花边 -->
       <div class="lace-dots" aria-hidden="true"></div>
 
-      <div class="paywall-content">
-        <!-- 可爱装饰 -->
-        <div class="paywall-decor" aria-hidden="true">
-          <span class="paywall-decor__item paywall-decor__item--1">🎀</span>
-          <span class="paywall-decor__item paywall-decor__item--2">♡</span>
-          <span class="paywall-decor__item paywall-decor__item--3">🍰</span>
-          <span class="paywall-decor__item paywall-decor__item--4">🎀</span>
-          <span class="paywall-decor__item paywall-decor__item--5">♡</span>
-        </div>
-
+      <div class="ad-content">
         <!-- 主卡片 -->
-        <div class="window-panel window-panel--paywall">
+        <div class="window-panel window-panel--ad">
           <div class="window-panel__titlebar">
-            <span class="window-panel__title">★ Secret Recipe ★</span>
+            <span class="window-panel__title">♪ 精彩推荐</span>
             <span class="window-panel__btn">×</span>
           </div>
-          <div class="window-panel__body paywall-body">
-            <!-- 大emoji -->
-            <div class="paywall-emoji">🍰</div>
+          <div class="window-panel__body ad-body">
+            <!-- 大emoji动画 -->
+            <div class="ad-emoji">🎬</div>
 
-            <!-- 可爱标题 -->
-            <h2 class="paywall-title">
-              仅需 <span class="paywall-price">¥1.99</span>
-            </h2>
-            <p class="paywall-subtitle">即可得知你是什么小甜点啦</p>
-            <p class="paywall-kaomoji">(◕ᴗ◕) (๑˃ᴗ˂)و ♡</p>
+            <!-- 广告文字 -->
+            <h2 class="ad-title">正在为你烘焙结果...</h2>
+            <p class="ad-subtitle">稍等片刻，甜点马上出炉~</p>
+            <p class="ad-kaomoji">(◕ᴗ◕) ๑˃ᴗ˂)و ♡</p>
 
-            <!-- 甜点预览诱惑 -->
-            <div class="paywall-tease">
-              <p>你是泡芙型的反差甜妹？</p>
-              <p>还是甜甜圈元气万人迷？</p>
-              <p>或者是芝士乳酪的清醒独立派？</p>
+            <!-- 倒计时 -->
+            <div class="ad-countdown" id="ad-countdown">
+              <span class="ad-countdown-num" id="ad-countdown-num">5</span>
+              <span class="ad-countdown-label">秒后揭晓</span>
             </div>
 
-            <!-- 真实微信赞赏码 -->
-            <div class="paywall-qr-wrap">
-              <p class="paywall-qr-label">📱 微信扫码赞赏 ¥1.99</p>
-              <div class="paywall-qr-frame">
-                <img src="assets/images/wechat-qr.jpg" alt="微信赞赏码" class="paywall-qr-img">
-              </div>
-              <p class="paywall-qr-hint">长按识别二维码 (๑•́ ω •̀๑)</p>
+            <!-- 进度条 -->
+            <div class="ad-progress">
+              <div class="ad-progress-fill" id="ad-progress-fill"></div>
             </div>
 
-            <!-- 金额确认区 -->
-            <div class="paywall-verify" id="paywall-verify">
-              <p class="paywall-verify-label">请输入赞赏金额以确认 (◕ᴗ◕)</p>
-              <div class="paywall-input-row">
-                <span class="paywall-input-prefix">¥</span>
-                <input type="text" id="paywall-amount" class="paywall-input"
-                       placeholder="1.99" inputmode="decimal" maxlength="4">
-                <button id="btn-verify-amount" class="paywall-verify-btn">确认</button>
-              </div>
-              <p class="paywall-verify-error" id="paywall-verify-error"></p>
-            </div>
+            <!-- 跳过按钮 -->
+            <button id="btn-ad-skip" class="ad-skip-btn" disabled>
+              跳过广告 (5秒)
+            </button>
 
-            <!-- 解锁按钮（金额正确后才出现） -->
-            <div class="paywall-unlock-area" id="paywall-unlock-area" style="display:none;">
-              <button id="btn-pay-done" class="paywall-unlock-btn" disabled>
-                ♡ 解锁结果 (5秒)
-              </button>
-              <p class="paywall-note">🎉 感谢赞赏！倒计时结束后即可解锁~</p>
-            </div>
+            <p class="ad-note">♡ 感谢耐心等待，结果马上来 ♡</p>
           </div>
         </div>
 
         <!-- 底部装饰 -->
-        <div class="paywall-footer-decor" aria-hidden="true">
-          ♡ 你的甜点人格正在等待揭晓 ♡
+        <div class="ad-footer-decor" aria-hidden="true">
+          ∿  ⋅  ⭒  ♡  ⋅  ∿
         </div>
       </div>
 
@@ -329,6 +300,11 @@
           </button>
         </div>
 
+        <!-- 赞赏按钮 -->
+        <button id="btn-donate" class="donate-btn" type="button">
+          🍰 喜欢这个测试吗？赞赏一下甜点师吧 (๑˃ᴗ˂)و
+        </button>
+
         <!-- 底部装饰 -->
         <div class="result-footer-decor" aria-hidden="true">
           ♡ 分享给你的朋友一起测吧 ♡
@@ -356,9 +332,30 @@
     </div>
   </div>
 
-  <!-- ========== 隐藏海报画布（供 html2canvas 渲染，JS控制显示/隐藏） ========== -->
+  <!-- ========== 隐藏海报画布 ========== -->
   <div id="poster-canvas" class="poster-canvas" style="position: absolute; left: -9999px; top: 0; width: 370px; background: #FFF0F3;">
     <!-- JS动态构建海报内容 -->
+  </div>
+
+  <!-- ========== 赞赏弹窗 ========== -->
+  <div id="donate-modal" class="poster-modal" style="display: none;">
+    <div class="poster-modal__overlay"></div>
+    <div class="poster-modal__content">
+      <div class="poster-modal__close" id="btn-close-donate" role="button" aria-label="关闭">×</div>
+      <div class="donate-modal-body">
+        <p class="donate-title">🍰 喜欢这个测试吗？</p>
+        <p class="donate-subtitle">赞赏一下甜点师吧 (๑˃ᴗ˂)و ♡</p>
+        <p class="donate-kaomoji">₍ᐢ.ˬ.ᐢ₎ ♡ ૮₍ ˶•⤙•˶ ₎ა</p>
+
+        <!-- 微信赞赏码 -->
+        <div class="donate-qr-frame">
+          <img src="assets/images/wechat-qr.jpg" alt="微信赞赏码" class="donate-qr-img">
+        </div>
+        <p class="donate-qr-hint">📱 微信扫码 · 随意赞赏 · 感谢支持 ♡</p>
+
+        <p class="donate-note">你的每一份鼓励都是甜点师继续创作的动力 ✨</p>
+      </div>
+    </div>
   </div>
 
 </body>

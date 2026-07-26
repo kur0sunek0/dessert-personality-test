@@ -5,7 +5,7 @@
 
 // ---------- 全局应用状态 ----------
 const AppState = {
-  currentPage: 'home',                // 'home' | 'quiz' | 'result'
+  currentPage: 'home',                // 'home' | 'quiz' | 'paywall' | 'result'
   currentQuestion: 0,                 // 0-9
   answers: new Array(10).fill(null),  // 'A'|'B'|'C'|'D' | null
   resultId: null,                     // 1-8 | null
@@ -14,13 +14,13 @@ const AppState = {
 // ---------- DOM 元素引用 ----------
 const DOM = {
   // 页面容器
-  pageHome:   document.getElementById('page-home'),
-  pageQuiz:   document.getElementById('page-quiz'),
+  pageHome:    document.getElementById('page-home'),
+  pageQuiz:    document.getElementById('page-quiz'),
   pagePaywall: document.getElementById('page-paywall'),
-  pageResult:   document.getElementById('page-result'),
+  pageResult:  document.getElementById('page-result'),
 
   // 首页
-  btnStart:   document.getElementById('btn-start'),
+  btnStart:    document.getElementById('btn-start'),
 
   // 答题页
   btnBackHome:    document.getElementById('btn-back-home'),
@@ -47,8 +47,47 @@ const DOM = {
   btnDownloadPoster:     document.getElementById('btn-download-poster'),
 };
 
+// ---------- 广告页倒计时 ----------
+var adCountdownNum = document.getElementById('ad-countdown-num');
+var adProgressFill = document.getElementById('ad-progress-fill');
+var btnAdSkip = document.getElementById('btn-ad-skip');
+var adTimer = null;
+var adSeconds = 5;
+var adElapsed = 0;
+
+function startAdCountdown() {
+  adElapsed = 0;
+  var remaining = adSeconds;
+  if (adCountdownNum) adCountdownNum.textContent = remaining;
+  if (adProgressFill) adProgressFill.style.width = '0%';
+  if (btnAdSkip) { btnAdSkip.disabled = true; btnAdSkip.textContent = '跳过广告 (' + remaining + '秒)'; }
+
+  adTimer = setInterval(function () {
+    adElapsed++;
+    remaining = adSeconds - adElapsed;
+    if (adCountdownNum) adCountdownNum.textContent = Math.max(0, remaining);
+    if (adProgressFill) adProgressFill.style.width = ((adElapsed / adSeconds) * 100) + '%';
+    if (btnAdSkip) {
+      btnAdSkip.textContent = '跳过广告 (' + Math.max(0, remaining) + '秒)';
+      if (remaining <= 0) btnAdSkip.disabled = false;
+    }
+    if (adElapsed >= adSeconds) { clearInterval(adTimer); adTimer = null; navigateTo('result'); }
+  }, 1000);
+}
+
+function stopAdCountdown() { if (adTimer) { clearInterval(adTimer); adTimer = null; } }
+
+if (btnAdSkip) {
+  btnAdSkip.addEventListener('click', function () {
+    if (adElapsed >= adSeconds) { stopAdCountdown(); navigateTo('result'); }
+  });
+}
+
 // ---------- 页面切换 ----------
 function navigateTo(pageName) {
+  // 离开广告页时清理
+  if (adTimer && AppState.currentPage === 'paywall' && pageName !== 'paywall') stopAdCountdown();
+
   // 移除所有 active 状态
   [DOM.pageHome, DOM.pageQuiz, DOM.pagePaywall, DOM.pageResult].forEach(function (el) {
     el.classList.remove('page--active');
@@ -62,18 +101,14 @@ function navigateTo(pageName) {
     result:  DOM.pageResult,
   };
   var target = targetMap[pageName];
-  if (target) {
-    target.classList.add('page--active');
-  }
+  if (target) target.classList.add('page--active');
 
   AppState.currentPage = pageName;
 
   // 页面初始化钩子
-  if (pageName === 'quiz') {
-    initQuiz();
-  } else if (pageName === 'result') {
-    renderResult();
-  }
+  if (pageName === 'quiz') initQuiz();
+  else if (pageName === 'result') renderResult();
+  else if (pageName === 'paywall') startAdCountdown();
 
   // 滚动到顶部
   window.scrollTo(0, 0);
@@ -92,20 +127,13 @@ function resetQuiz() {
   AppState.resultId = null;
 }
 
-function initQuiz() {
-  renderQuestion();
-  updateProgress();
-  updateNavButtons();
-}
+function initQuiz() { renderQuestion(); updateProgress(); updateNavButtons(); }
 
 function renderQuestion() {
   var idx = AppState.currentQuestion;
   var q = QUESTIONS[idx];
-
-  // 题目标题
   DOM.quizQuestion.textContent = q.title;
 
-  // 选项
   var savedAnswer = AppState.answers[idx];
   var html = '';
   for (var i = 0; i < q.options.length; i++) {
@@ -119,40 +147,29 @@ function renderQuestion() {
   }
   DOM.quizOptions.innerHTML = html;
 
-  // 绑定选项点击
   var cards = DOM.quizOptions.querySelectorAll('.option-card');
   for (var j = 0; j < cards.length; j++) {
     cards[j].addEventListener('click', function () {
-      var key = this.getAttribute('data-key');
-      selectOption(key);
+      selectOption(this.getAttribute('data-key'));
     });
   }
 }
 
 function selectOption(key) {
-  // 保存答案
   AppState.answers[AppState.currentQuestion] = key;
-
-  // 更新选中态
   var cards = DOM.quizOptions.querySelectorAll('.option-card');
   for (var i = 0; i < cards.length; i++) {
     var cardKey = cards[i].getAttribute('data-key');
-    if (cardKey === key) {
-      cards[i].classList.add('option-card--selected');
-    } else {
-      cards[i].classList.remove('option-card--selected');
-    }
+    if (cardKey === key) cards[i].classList.add('option-card--selected');
+    else cards[i].classList.remove('option-card--selected');
   }
-
-  // 更新导航按钮
   updateNavButtons();
 }
 
 function updateProgress() {
   var current = AppState.currentQuestion + 1;
-  var total = QUESTIONS.length;
-  DOM.progressText.textContent = current + '/' + total;
-  DOM.progressFill.style.width = ((current / total) * 100) + '%';
+  DOM.progressText.textContent = current + '/' + QUESTIONS.length;
+  DOM.progressFill.style.width = ((current / QUESTIONS.length) * 100) + '%';
 }
 
 function updateNavButtons() {
@@ -161,101 +178,58 @@ function updateNavButtons() {
   var isLast = idx === QUESTIONS.length - 1;
   var allAnswered = AppState.answers.every(function (a) { return a !== null; });
 
-  // 上一题按钮
   DOM.btnPrev.disabled = (idx === 0);
-
-  // 下一题按钮
   DOM.btnNext.disabled = !hasAnswer;
 
   if (isLast) {
-    // 最后一题：变为"查看结果"
     DOM.btnNext.textContent = '查看结果 ✦';
-    DOM.btnNext.disabled = !allAnswered; // 全部答完才能看结果
+    DOM.btnNext.disabled = !allAnswered;
   } else {
     DOM.btnNext.textContent = '下一题 →';
   }
 }
 
-// 上一题
 DOM.btnPrev.addEventListener('click', function () {
-  if (AppState.currentQuestion > 0) {
-    AppState.currentQuestion--;
-    renderQuestion();
-    updateProgress();
-    updateNavButtons();
-  }
+  if (AppState.currentQuestion > 0) { AppState.currentQuestion--; renderQuestion(); updateProgress(); updateNavButtons(); }
 });
 
-// 下一题 / 查看结果
 DOM.btnNext.addEventListener('click', function () {
-  var idx = AppState.currentQuestion;
-  var isLast = idx === QUESTIONS.length - 1;
-
+  var isLast = AppState.currentQuestion === QUESTIONS.length - 1;
   if (isLast) {
-    // 全部答完 → 计算 → 跳转付费页
     AppState.resultId = calculateResult(AppState.answers);
-    navigateTo('paywall');
+    navigateTo('paywall');  // 先看广告
   } else {
-    // 下一题
-    AppState.currentQuestion++;
-    renderQuestion();
-    updateProgress();
-    updateNavButtons();
+    AppState.currentQuestion++; renderQuestion(); updateProgress(); updateNavButtons();
   }
 });
 
-// 返回首页（答题页左上角）
-DOM.btnBackHome.addEventListener('click', function () {
-  navigateTo('home');
-});
+DOM.btnBackHome.addEventListener('click', function () { navigateTo('home'); });
 
 // ---------- 结果页逻辑 ----------
 function renderResult() {
   var result = RESULTS[AppState.resultId];
   if (!result) return;
 
-  // 甜点图片
-  var imgLoaded = false;
   DOM.resultImage.src = result.image;
   DOM.resultImage.alt = result.name;
   DOM.resultImage.style.display = 'block';
-  DOM.resultImage.onload = function () { imgLoaded = true; };
-  DOM.resultImage.onerror = function () {
-    // 图片加载失败：显示 emoji 占位
-    this.style.display = 'none';
-    showResultEmojiFallback(result.emoji);
-  };
+  DOM.resultImage.onerror = function () { this.style.display = 'none'; showResultEmojiFallback(result.emoji); };
 
-  // 如果图片已缓存立即触发
-  if (DOM.resultImage.complete && DOM.resultImage.naturalWidth > 0) {
-    imgLoaded = true;
-  }
-
-  // 名称 + 副标题
   DOM.resultName.textContent = result.name + ' · ' + result.subtitle;
 
-  // 标签
   var tagsHtml = '';
   for (var i = 0; i < result.tags.length; i++) {
     tagsHtml += '<span class="result-tag">' + result.tags[i] + '</span>';
   }
   DOM.resultTags.innerHTML = tagsHtml;
-
-  // 解读
   DOM.resultDescription.textContent = result.description;
 }
 
-/**
- * 图片不可用时，在相框内显示 emoji 占位
- */
 function showResultEmojiFallback(emoji) {
   var frame = document.querySelector('.result-frame');
   if (!frame) return;
-
-  // 移除已有占位
   var existing = frame.querySelector('.result-emoji-fallback');
   if (existing) existing.remove();
-
   var span = document.createElement('span');
   span.className = 'result-emoji-fallback';
   span.textContent = emoji || '🍰';
@@ -266,192 +240,64 @@ function showResultEmojiFallback(emoji) {
 // 保存海报
 DOM.btnPoster.addEventListener('click', function () {
   if (!AppState.resultId) return;
-
-  // 生成海报卡片（HTML + Canvas下载图）
   var posterData = generatePoster(AppState.resultId);
-
-  // 展示海报弹窗
   saveOrSharePoster(posterData);
 });
 
-// ---------- 付费页：金额验证 + 倒计时解锁 ----------
-var btnVerifyAmount = document.getElementById('btn-verify-amount');
-var paywallAmount = document.getElementById('paywall-amount');
-var paywallVerifyError = document.getElementById('paywall-verify-error');
-var paywallVerifyArea = document.getElementById('paywall-verify');
-var paywallUnlockArea = document.getElementById('paywall-unlock-area');
-var btnPayDone = document.getElementById('btn-pay-done');
-var countdownTimer = null;
-var countdownSeconds = 5;
-
-function startCountdown() {
-  btnPayDone.disabled = true;
-  var remaining = countdownSeconds;
-
-  btnPayDone.textContent = '♡ 解锁结果 (' + remaining + '秒)';
-
-  countdownTimer = setInterval(function () {
-    remaining--;
-    if (remaining <= 0) {
-      clearInterval(countdownTimer);
-      countdownTimer = null;
-      btnPayDone.textContent = '♡ 解锁结果 ♡';
-      btnPayDone.disabled = false;
-    } else {
-      btnPayDone.textContent = '♡ 解锁结果 (' + remaining + '秒)';
-    }
-  }, 1000);
-}
-
-if (btnVerifyAmount && paywallAmount) {
-  btnVerifyAmount.addEventListener('click', function () {
-    // 兼容小数点(.)和逗号(,)两种输入
-    var raw = paywallAmount.value.trim().replace(',', '.');
-    var val = parseFloat(raw);
-
-    if (isNaN(val) || val < 1.9) {
-      paywallVerifyError.textContent = '(｡•́︿•̀｡) 金额不足 ¥1.99，请输入 1.99~';
-      return;
-    }
-
-    if (val > 5) {
-      paywallVerifyError.textContent = '(๑•́ ω •̀๑) 太多了！输入 1.99 就好哦~';
-      return;
-    }
-
-    // 金额正确 → 显示解锁区 + 倒计时
-    paywallVerifyError.textContent = '';
-    paywallVerifyArea.style.display = 'none';
-    paywallUnlockArea.style.display = 'block';
-    startCountdown();
-  });
-
-  // 回车键也能提交
-  paywallAmount.addEventListener('keydown', function (e) {
-    if (e.key === 'Enter') {
-      btnVerifyAmount.click();
-    }
-  });
-}
-
-if (btnPayDone) {
-  btnPayDone.addEventListener('click', function () {
-    if (countdownTimer) return; // 倒计时未结束，不能点
-    navigateTo('result');
-  });
-}
-
-// 离开付费页时清理倒计时
-var origNavigateTo = navigateTo;
-navigateTo = function (pageName) {
-  if (countdownTimer && AppState.currentPage === 'paywall' && pageName !== 'paywall') {
-    clearInterval(countdownTimer);
-    countdownTimer = null;
-    // 重置付费页状态
-    if (paywallVerifyArea) paywallVerifyArea.style.display = 'flex';
-    if (paywallUnlockArea) paywallUnlockArea.style.display = 'none';
-    if (paywallAmount) paywallAmount.value = '';
-    if (paywallVerifyError) paywallVerifyError.textContent = '';
-    btnPayDone.disabled = true;
-    btnPayDone.textContent = '♡ 解锁结果 (5秒)';
-  }
-  origNavigateTo(pageName);
-};
-
 // 重新测试
-DOM.btnRetry.addEventListener('click', function () {
-  resetQuiz();
-  navigateTo('quiz');
-});
+DOM.btnRetry.addEventListener('click', function () { resetQuiz(); navigateTo('quiz'); });
+
+// ---------- 赞赏弹窗 ----------
+var donateModal = document.getElementById('donate-modal');
+var btnDonate = document.getElementById('btn-donate');
+var btnCloseDonate = document.getElementById('btn-close-donate');
+
+if (btnDonate && donateModal) {
+  btnDonate.addEventListener('click', function () { donateModal.style.display = 'flex'; document.body.classList.add('no-scroll'); });
+}
+if (btnCloseDonate && donateModal) {
+  btnCloseDonate.addEventListener('click', function () { donateModal.style.display = 'none'; document.body.classList.remove('no-scroll'); });
+  var donateOverlay = donateModal.querySelector('.poster-modal__overlay');
+  if (donateOverlay) donateOverlay.addEventListener('click', function () { donateModal.style.display = 'none'; document.body.classList.remove('no-scroll'); });
+}
 
 // ---------- 海报弹窗 ----------
 DOM.btnCloseModal.addEventListener('click', closePosterModal);
 document.querySelector('.poster-modal__overlay').addEventListener('click', closePosterModal);
 
-function closePosterModal() {
-  DOM.posterModal.style.display = 'none';
-  document.body.classList.remove('no-scroll');
-}
+function closePosterModal() { DOM.posterModal.style.display = 'none'; document.body.classList.remove('no-scroll'); }
 
-DOM.btnDownloadPoster.addEventListener('click', function () {
-  // 阶段5实现
-  alert('请长按海报图片保存到相册~');
-});
+DOM.btnDownloadPoster.addEventListener('click', function () { alert('请长按海报图片保存到相册~'); });
 
 // ---------- 分享按钮（菜单栏） ----------
 var btnShareMenu = document.getElementById('btn-share-menu');
 if (btnShareMenu) {
   btnShareMenu.addEventListener('click', function () {
     var shareUrl = window.location.href;
-    var shareTitle = '测测你的本命甜点塑 🍰';
-    var shareText = '10道小题，找到属于你的甜点人格！快来测测~';
-
-    // 优先使用 Web Share API（手机原生分享）
-    if (navigator.share) {
-      navigator.share({
-        title: shareTitle,
-        text: shareText,
-        url: shareUrl,
-      }).catch(function () {});
-    } else {
-      // 桌面端/微信：复制链接
-      copyToClipboard(shareUrl);
-    }
+    if (navigator.share) { navigator.share({ title: '测测你的本命甜点塑 🍰', text: '10道小题，找到属于你的甜点人格！快来测测~', url: shareUrl }).catch(function () {}); }
+    else { copyToClipboard(shareUrl); }
   });
 }
 
-/**
- * 复制文字到剪贴板 + 短暂反馈
- */
 function copyToClipboard(text) {
   if (navigator.clipboard && navigator.clipboard.writeText) {
-    navigator.clipboard.writeText(text).then(function () {
-      showCopyToast('链接已复制！去粘贴分享吧 ♡');
-    }).catch(function () {
-      fallbackCopy(text);
-    });
-  } else {
-    fallbackCopy(text);
-  }
+    navigator.clipboard.writeText(text).then(function () { showCopyToast('链接已复制！去粘贴分享吧 ♡'); }).catch(function () { fallbackCopy(text); });
+  } else { fallbackCopy(text); }
 }
-
 function fallbackCopy(text) {
-  var textarea = document.createElement('textarea');
-  textarea.value = text;
-  textarea.style.position = 'fixed';
-  textarea.style.left = '-9999px';
-  document.body.appendChild(textarea);
-  textarea.select();
-  try {
-    document.execCommand('copy');
-    showCopyToast('链接已复制！去粘贴分享吧 ♡');
-  } catch (e) {
-    alert('链接：' + text);
-  }
-  document.body.removeChild(textarea);
+  var ta = document.createElement('textarea'); ta.value = text; ta.style.position = 'fixed'; ta.style.left = '-9999px';
+  document.body.appendChild(ta); ta.select();
+  try { document.execCommand('copy'); showCopyToast('链接已复制！去粘贴分享吧 ♡'); } catch (e) { alert('链接：' + text); }
+  document.body.removeChild(ta);
 }
-
 function showCopyToast(msg) {
-  var toast = document.createElement('div');
-  toast.textContent = msg;
-  toast.style.cssText =
-    'position:fixed;bottom:80px;left:50%;transform:translateX(-50%);' +
-    'background:#1A1A1A;color:#FFF;padding:12px 24px;border-radius:20px;' +
-    'font-size:14px;z-index:99999;white-space:nowrap;' +
-    'animation:toastIn 0.3s ease,toastOut 0.3s ease 1.8s forwards;';
+  var toast = document.createElement('div'); toast.textContent = msg;
+  toast.style.cssText = 'position:fixed;bottom:80px;left:50%;transform:translateX(-50%);background:#1A1A1A;color:#FFF;padding:12px 24px;border-radius:20px;font-size:14px;z-index:99999;white-space:nowrap;animation:toastIn 0.3s ease,toastOut 0.3s ease 1.8s forwards;';
   document.body.appendChild(toast);
-  setTimeout(function () {
-    if (toast.parentNode) toast.parentNode.removeChild(toast);
-  }, 2200);
+  setTimeout(function () { if (toast.parentNode) toast.parentNode.removeChild(toast); }, 2200);
 }
 
-// ---------- 初始化：确保首页可见 ----------
+// ---------- 初始化 ----------
 navigateTo('home');
 
-// ---------- 暴露调试接口到全局 ----------
-window.DessertApp = {
-  AppState: AppState,
-  navigateTo: navigateTo,
-  calculateResult: calculateResult,
-  scoringSelfTest: scoringSelfTest,
-};
+window.DessertApp = { AppState: AppState, navigateTo: navigateTo, calculateResult: calculateResult, scoringSelfTest: scoringSelfTest };

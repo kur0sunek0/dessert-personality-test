@@ -700,9 +700,9 @@ a { color: inherit; text-decoration: none; }
 }
 
 /* -----------------------------------------------------------------
-   付费页
+   广告页
    ----------------------------------------------------------------- */
-.paywall-content {
+.ad-content {
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -711,37 +711,12 @@ a { color: inherit; text-decoration: none; }
   padding-top: var(--space-md);
 }
 
-/* 付费页装饰 */
-.paywall-decor {
-  display: flex;
-  gap: 12px;
-  justify-content: center;
-  margin-bottom: var(--space-sm);
-}
-
-.paywall-decor__item {
-  font-size: 20px;
-  animation: paywallFloat 2.5s ease-in-out infinite;
-  opacity: 0.6;
-}
-.paywall-decor__item--1 { animation-delay: 0s; }
-.paywall-decor__item--2 { animation-delay: 0.4s; }
-.paywall-decor__item--3 { animation-delay: 0.8s; font-size: 26px; }
-.paywall-decor__item--4 { animation-delay: 1.2s; }
-.paywall-decor__item--5 { animation-delay: 1.6s; }
-
-@keyframes paywallFloat {
-  0%, 100% { transform: translateY(0); }
-  50%      { transform: translateY(-8px); }
-}
-
-/* 付费主卡片 */
-.window-panel--paywall {
+.window-panel--ad {
   width: 100%;
-  max-width: 340px;
+  max-width: 360px;
 }
 
-.paywall-body {
+.ad-body {
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -749,207 +724,181 @@ a { color: inherit; text-decoration: none; }
   padding: var(--space-xl) var(--space-lg) !important;
 }
 
-/* 大emoji */
-.paywall-emoji {
-  font-size: 64px;
+.ad-emoji {
+  font-size: 56px;
   line-height: 1;
   animation: heroBounce 2s ease-in-out infinite;
 }
 
-/* 标题 */
-.paywall-title {
+.ad-title {
   font-size: var(--fs-subtitle);
   color: var(--color-black-soft);
   font-weight: 700;
-  letter-spacing: 0.05em;
 }
 
-.paywall-price {
-  font-size: 28px;
-  font-weight: 900;
-  color: var(--color-pink-deep);
-  text-shadow: 0 0 6px rgba(232,160,176,0.3);
-}
-
-.paywall-subtitle {
+.ad-subtitle {
   font-size: var(--fs-body);
-  color: var(--color-black-soft);
+  color: var(--color-gray-dark);
   margin-top: -8px;
 }
 
-.paywall-kaomoji {
+.ad-kaomoji {
   font-size: var(--fs-small);
   color: var(--color-gray-dark);
-  letter-spacing: 1px;
-  margin-top: -4px;
 }
 
-/* 甜点预览 */
-.paywall-tease {
-  background: #FFFBFD;
-  border: 1px dashed #F5B7C5;
-  border-radius: var(--radius-card);
-  padding: var(--space-md);
+/* 倒计时数字 */
+.ad-countdown {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.ad-countdown-num {
+  font-size: 48px;
+  font-weight: 900;
+  color: var(--color-pink-deep);
+  line-height: 1;
+}
+
+.ad-countdown-label {
+  font-size: var(--fs-xs);
+  color: var(--color-gray-dark);
+}
+
+/* 广告进度条 */
+.ad-progress {
   width: 100%;
+  height: 6px;
+  background: #F0E0E5;
+  border-radius: 3px;
+  overflow: hidden;
 }
 
-.paywall-tease p {
+.ad-progress-fill {
+  height: 100%;
+  background: var(--color-pink-deep);
+  border-radius: 3px;
+  transition: width 1s linear;
+  width: 0%;
+}
+
+/* 跳过按钮 */
+.ad-skip-btn {
+  padding: 10px 28px;
   font-size: var(--fs-small);
+  font-weight: 600;
   color: var(--color-gray-dark);
-  margin: 4px 0;
-  line-height: 1.6;
+  background: transparent;
+  border: 1.5px solid var(--color-gray);
+  border-radius: var(--radius-btn);
+  cursor: pointer;
+  transition: all var(--transition-fast);
 }
 
-/* 赞赏码 */
-.paywall-qr-wrap {
+.ad-skip-btn:disabled {
+  opacity: 0.4;
+  cursor: not-allowed;
+}
+
+.ad-skip-btn:not(:disabled):hover {
+  border-color: var(--color-pink-deep);
+  color: var(--color-pink-deep);
+}
+
+.ad-note {
+  font-size: var(--fs-xs);
+  color: var(--color-gray);
+}
+
+.ad-footer-decor {
+  color: var(--color-gray);
+  font-size: var(--fs-xs);
+  letter-spacing: 2px;
+  margin-top: var(--space-md);
+}
+
+/* -----------------------------------------------------------------
+   赞赏
+   ----------------------------------------------------------------- */
+.donate-btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  width: 100%;
+  max-width: 300px;
+  margin: 0 auto;
+  padding: 14px 20px;
+  font-size: var(--fs-small);
+  font-weight: 600;
+  color: var(--color-pink-deep);
+  background: #FFFBFD;
+  border: 2px dashed var(--color-pink);
+  border-radius: var(--radius-btn);
+  cursor: pointer;
+  transition: all var(--transition-fast);
+  letter-spacing: 0.5px;
+}
+
+.donate-btn:hover {
+  background: #FFF5F8;
+  border-color: var(--color-pink-deep);
+}
+
+.donate-modal-body {
   display: flex;
   flex-direction: column;
   align-items: center;
   gap: 8px;
-  width: 100%;
+  text-align: center;
 }
 
-.paywall-qr-label {
+.donate-title {
+  font-size: var(--fs-subtitle);
+  color: var(--color-black-soft);
+  font-weight: 700;
+  margin: 0;
+}
+
+.donate-subtitle {
   font-size: var(--fs-body);
   color: var(--color-black-soft);
-  font-weight: 600;
-  letter-spacing: 0.05em;
+  margin: 0;
 }
 
-.paywall-qr-frame {
+.donate-kaomoji {
+  font-size: var(--fs-small);
+  color: var(--color-gray-dark);
+  margin: 0;
+}
+
+.donate-qr-frame {
   display: inline-block;
   padding: 12px;
   background: #FFFFFF;
   border: 2px solid var(--color-pink);
   border-radius: 12px;
   box-shadow: 0 2px 8px rgba(0,0,0,0.06);
+  margin: 8px 0;
 }
 
-.paywall-qr-img {
-  width: 180px;
-  height: 180px;
+.donate-qr-img {
+  width: 160px;
+  height: 160px;
   display: block;
   border-radius: 4px;
 }
 
-.paywall-qr-hint {
+.donate-qr-hint {
   font-size: var(--fs-xs);
   color: var(--color-gray-dark);
 }
 
-/* 金额验证 */
-.paywall-verify {
-  width: 100%;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 10px;
-}
-
-.paywall-verify-label {
-  font-size: var(--fs-small);
-  color: var(--color-black-soft);
-}
-
-.paywall-input-row {
-  display: flex;
-  align-items: center;
-  gap: 6px;
-  width: 100%;
-  max-width: 240px;
-}
-
-.paywall-input-prefix {
-  font-size: 22px;
-  font-weight: 700;
-  color: var(--color-pink-deep);
-}
-
-.paywall-input {
-  flex: 1;
-  padding: 10px 12px;
-  font-size: 20px;
-  font-weight: 700;
-  text-align: center;
-  border: 2px solid var(--color-pink);
-  border-radius: 8px;
-  background: #FFFBFD;
-  color: var(--color-black);
-  outline: none;
-  -webkit-appearance: none;
-  min-width: 0;
-}
-
-.paywall-input:focus {
-  border-color: var(--color-pink-deep);
-  box-shadow: 0 0 0 3px rgba(245,183,197,0.2);
-}
-
-.paywall-verify-btn {
-  padding: 10px 16px;
-  font-size: 14px;
-  font-weight: 700;
-  background: var(--color-pink);
-  color: var(--color-black);
-  border: 2px solid var(--color-pink-deep);
-  border-radius: 8px;
-  cursor: pointer;
-  white-space: nowrap;
-}
-
-.paywall-verify-btn:hover {
-  background: var(--color-pink-deep);
-}
-
-.paywall-verify-error {
-  font-size: var(--fs-xs);
-  color: #E06060;
-  min-height: 16px;
-}
-
-/* 解锁按钮 */
-.paywall-unlock-btn {
-  width: 100%;
-  padding: 14px 24px;
-  font-size: 16px;
-  font-weight: 700;
-  letter-spacing: 1px;
-  border-radius: var(--radius-btn);
-  cursor: pointer;
-  transition: all var(--transition-fast);
-  min-height: 52px;
-  background: linear-gradient(180deg, #FCC8D5, var(--color-pink));
-  color: var(--color-black);
-  border: 2px solid var(--color-pink-deep);
-  box-shadow: var(--shadow-btn);
-}
-
-.paywall-unlock-btn:hover {
-  background: linear-gradient(180deg, #FFD0DC, #FABFCC);
-  transform: translateY(-1px);
-}
-
-.paywall-unlock-btn:active {
-  box-shadow: var(--shadow-btn-pressed);
-  transform: scale(0.97);
-}
-
-.paywall-note {
-  font-size: var(--fs-xs);
-  color: var(--color-gray-dark);
-}
-
-.paywall-note--sm {
+.donate-note {
   font-size: 10px;
   color: var(--color-gray);
-  margin-top: -8px;
-}
-
-.paywall-footer-decor {
-  color: var(--color-pink-deep);
-  font-size: var(--fs-xs);
-  letter-spacing: 1px;
-  margin-top: var(--space-md);
+  margin-top: 4px;
 }
 
 /* -----------------------------------------------------------------
