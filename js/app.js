@@ -16,7 +16,8 @@ const DOM = {
   // 页面容器
   pageHome:   document.getElementById('page-home'),
   pageQuiz:   document.getElementById('page-quiz'),
-  pageResult: document.getElementById('page-result'),
+  pagePaywall: document.getElementById('page-paywall'),
+  pageResult:   document.getElementById('page-result'),
 
   // 首页
   btnStart:   document.getElementById('btn-start'),
@@ -49,15 +50,16 @@ const DOM = {
 // ---------- 页面切换 ----------
 function navigateTo(pageName) {
   // 移除所有 active 状态
-  [DOM.pageHome, DOM.pageQuiz, DOM.pageResult].forEach(function (el) {
+  [DOM.pageHome, DOM.pageQuiz, DOM.pagePaywall, DOM.pageResult].forEach(function (el) {
     el.classList.remove('page--active');
   });
 
   // 激活目标页
   var targetMap = {
-    home:   DOM.pageHome,
-    quiz:   DOM.pageQuiz,
-    result: DOM.pageResult,
+    home:    DOM.pageHome,
+    quiz:    DOM.pageQuiz,
+    paywall: DOM.pagePaywall,
+    result:  DOM.pageResult,
   };
   var target = targetMap[pageName];
   if (target) {
@@ -190,9 +192,9 @@ DOM.btnNext.addEventListener('click', function () {
   var isLast = idx === QUESTIONS.length - 1;
 
   if (isLast) {
-    // 全部答完 → 计算并跳转结果
+    // 全部答完 → 计算 → 跳转付费页
     AppState.resultId = calculateResult(AppState.answers);
-    navigateTo('result');
+    navigateTo('paywall');
   } else {
     // 下一题
     AppState.currentQuestion++;
@@ -271,6 +273,17 @@ DOM.btnPoster.addEventListener('click', function () {
   // 展示海报弹窗
   saveOrSharePoster(posterData);
 });
+
+// ---------- 付费页按钮 ----------
+var btnPayWechat = document.getElementById('btn-pay-wechat');
+var btnPayAlipay = document.getElementById('btn-pay-alipay');
+
+function handlePayClick() {
+  navigateTo('result');
+}
+
+if (btnPayWechat) btnPayWechat.addEventListener('click', handlePayClick);
+if (btnPayAlipay) btnPayAlipay.addEventListener('click', handlePayClick);
 
 // 重新测试
 DOM.btnRetry.addEventListener('click', function () {
