@@ -305,15 +305,17 @@ function startCountdown() {
 
 if (btnVerifyAmount && paywallAmount) {
   btnVerifyAmount.addEventListener('click', function () {
-    var val = parseFloat(paywallAmount.value);
+    // 兼容小数点(.)和逗号(,)两种输入
+    var raw = paywallAmount.value.trim().replace(',', '.');
+    var val = parseFloat(raw);
 
-    if (isNaN(val) || val < 1.99) {
-      paywallVerifyError.textContent = '(｡•́︿•̀｡) 金额不足 ¥1.99，请输入正确赞赏金额~';
+    if (isNaN(val) || val < 1.9) {
+      paywallVerifyError.textContent = '(｡•́︿•̀｡) 金额不足 ¥1.99，请输入 1.99~';
       return;
     }
 
-    if (val > 9.99) {
-      paywallVerifyError.textContent = '(๑•́ ω •̀๑) 金额太大了！请输入 ¥1.99 哦~';
+    if (val > 5) {
+      paywallVerifyError.textContent = '(๑•́ ω •̀๑) 太多了！输入 1.99 就好哦~';
       return;
     }
 
