@@ -274,16 +274,14 @@ DOM.btnPoster.addEventListener('click', function () {
   saveOrSharePoster(posterData);
 });
 
-// ---------- 付费页按钮 ----------
-var btnPayWechat = document.getElementById('btn-pay-wechat');
-var btnPayAlipay = document.getElementById('btn-pay-alipay');
+// ---------- 付费页解锁按钮 ----------
+var btnPayDone = document.getElementById('btn-pay-done');
 
-function handlePayClick() {
-  navigateTo('result');
+if (btnPayDone) {
+  btnPayDone.addEventListener('click', function () {
+    navigateTo('result');
+  });
 }
-
-if (btnPayWechat) btnPayWechat.addEventListener('click', handlePayClick);
-if (btnPayAlipay) btnPayAlipay.addEventListener('click', handlePayClick);
 
 // 重新测试
 DOM.btnRetry.addEventListener('click', function () {
