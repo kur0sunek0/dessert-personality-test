@@ -274,14 +274,87 @@ DOM.btnPoster.addEventListener('click', function () {
   saveOrSharePoster(posterData);
 });
 
-// ---------- 付费页解锁按钮 ----------
+// ---------- 付费页：金额验证 + 倒计时解锁 ----------
+var btnVerifyAmount = document.getElementById('btn-verify-amount');
+var paywallAmount = document.getElementById('paywall-amount');
+var paywallVerifyError = document.getElementById('paywall-verify-error');
+var paywallVerifyArea = document.getElementById('paywall-verify');
+var paywallUnlockArea = document.getElementById('paywall-unlock-area');
 var btnPayDone = document.getElementById('btn-pay-done');
+var countdownTimer = null;
+var countdownSeconds = 5;
+
+function startCountdown() {
+  btnPayDone.disabled = true;
+  var remaining = countdownSeconds;
+
+  btnPayDone.textContent = '♡ 解锁结果 (' + remaining + '秒)';
+
+  countdownTimer = setInterval(function () {
+    remaining--;
+    if (remaining <= 0) {
+      clearInterval(countdownTimer);
+      countdownTimer = null;
+      btnPayDone.textContent = '♡ 解锁结果 ♡';
+      btnPayDone.disabled = false;
+    } else {
+      btnPayDone.textContent = '♡ 解锁结果 (' + remaining + '秒)';
+    }
+  }, 1000);
+}
+
+if (btnVerifyAmount && paywallAmount) {
+  btnVerifyAmount.addEventListener('click', function () {
+    var val = parseFloat(paywallAmount.value);
+
+    if (isNaN(val) || val < 1.99) {
+      paywallVerifyError.textContent = '(｡•́︿•̀｡) 金额不足 ¥1.99，请输入正确赞赏金额~';
+      return;
+    }
+
+    if (val > 9.99) {
+      paywallVerifyError.textContent = '(๑•́ ω •̀๑) 金额太大了！请输入 ¥1.99 哦~';
+      return;
+    }
+
+    // 金额正确 → 显示解锁区 + 倒计时
+    paywallVerifyError.textContent = '';
+    paywallVerifyArea.style.display = 'none';
+    paywallUnlockArea.style.display = 'block';
+    startCountdown();
+  });
+
+  // 回车键也能提交
+  paywallAmount.addEventListener('keydown', function (e) {
+    if (e.key === 'Enter') {
+      btnVerifyAmount.click();
+    }
+  });
+}
 
 if (btnPayDone) {
   btnPayDone.addEventListener('click', function () {
+    if (countdownTimer) return; // 倒计时未结束，不能点
     navigateTo('result');
   });
 }
+
+// 离开付费页时清理倒计时
+var origNavigateTo = navigateTo;
+navigateTo = function (pageName) {
+  if (countdownTimer && AppState.currentPage === 'paywall' && pageName !== 'paywall') {
+    clearInterval(countdownTimer);
+    countdownTimer = null;
+    // 重置付费页状态
+    if (paywallVerifyArea) paywallVerifyArea.style.display = 'flex';
+    if (paywallUnlockArea) paywallUnlockArea.style.display = 'none';
+    if (paywallAmount) paywallAmount.value = '';
+    if (paywallVerifyError) paywallVerifyError.textContent = '';
+    btnPayDone.disabled = true;
+    btnPayDone.textContent = '♡ 解锁结果 (5秒)';
+  }
+  origNavigateTo(pageName);
+};
 
 // 重新测试
 DOM.btnRetry.addEventListener('click', function () {

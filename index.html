@@ -239,13 +239,26 @@
               <p class="paywall-qr-hint">长按识别二维码 (๑•́ ω •̀๑)</p>
             </div>
 
-            <!-- 解锁按钮 -->
-            <button id="btn-pay-done" class="paywall-unlock-btn">
-              ♡ 已完成支付，解锁结果 ♡
-            </button>
+            <!-- 金额确认区 -->
+            <div class="paywall-verify" id="paywall-verify">
+              <p class="paywall-verify-label">请输入赞赏金额以确认 (◕ᴗ◕)</p>
+              <div class="paywall-input-row">
+                <span class="paywall-input-prefix">¥</span>
+                <input type="number" id="paywall-amount" class="paywall-input"
+                       placeholder="1.99" step="0.01" min="0" max="9.99"
+                       inputmode="decimal">
+                <button id="btn-verify-amount" class="paywall-verify-btn">确认</button>
+              </div>
+              <p class="paywall-verify-error" id="paywall-verify-error"></p>
+            </div>
 
-            <!-- 小字 -->
-            <p class="paywall-note">赞赏后请点击上方按钮查看结果~</p>
+            <!-- 解锁按钮（金额正确后才出现） -->
+            <div class="paywall-unlock-area" id="paywall-unlock-area" style="display:none;">
+              <button id="btn-pay-done" class="paywall-unlock-btn" disabled>
+                ♡ 解锁结果 (5秒)
+              </button>
+              <p class="paywall-note">🎉 感谢赞赏！倒计时结束后即可解锁~</p>
+            </div>
           </div>
         </div>
 
